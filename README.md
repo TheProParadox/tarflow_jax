@@ -1,6 +1,6 @@
-# TARFLOW Implementation in `jax` and `equinox`
+# TARFLOW Implementation in `jax` .
 
-Implementation of TARFLOW from [Normalizing Flows are Capable Generative Models](https://arxiv.org/pdf/2412.06329) using `jax` and `equinox`.  
+Implementation of TARFLOW from [Normalizing Flows are Capable Generative Models](https://arxiv.org/pdf/2412.06329) using `jax` .
 
 ## Features  
 - Efficient layer construction and forward pass using `jax.vmap` and `jax.lax.scan` for optimized compilation and execution.  
@@ -15,12 +15,10 @@ Implementation of TARFLOW from [Normalizing Flows are Capable Generative Models]
 - [x] Implement Exponential Moving Average (EMA).  
 - [x] Integrate AdaLayerNorm.  
 - [x] Enable class embeddings.  
-- [ ] Add hyperparameter and model saving.  
 - [x] Use uniform noise for dequantization.  
 
 ## Notes  
 - The paper presents a promising generative modeling approach, but training is more challenging than implied.  
   - Success depends on implementation details like attention mechanisms, requiring EMA and gradient clipping for stability.  
-  - The provided hyperparameters did not yield strong results in our tests.  
-- The choice of quantization method remains unclear, as it affects both sample quality and model log-likelihood.  
+  - The provided hyperparameters did not yield strong results in my tests.  
 - Training demands substantial compute resources.  
