@@ -146,16 +146,6 @@ def clip_grad_norm(grads: PyTree, max_norm: float) -> PyTree:
     grads = jax.tree.map(lambda x: x * factor, grads)
     return grads 
 
-
-def add_spacing(imgs: Array, img_size: int, cols_only: bool = False) -> Array:
-    h, w, c = imgs.shape # Assuming channels last
-    idx = jnp.arange(img_size, h, img_size)
-    if not cols_only:
-        imgs  = jnp.insert(imgs, idx, jnp.nan, axis=1)
-    imgs  = jnp.insert(imgs, idx, jnp.nan, axis=0)
-    return imgs
-
-
 def get_shardings() -> Tuple[NamedSharding, PositionalSharding]:
     devices = jax.local_devices()
     n_devices = jax.local_device_count()
@@ -172,6 +162,15 @@ def get_shardings() -> Tuple[NamedSharding, PositionalSharding]:
         sharding = replicated = None
 
     return sharding, replicated
+
+
+def add_spacing(imgs: Array, img_size: int, cols_only: bool = False) -> Array:
+    h, w, c = imgs.shape # Assuming channels last
+    idx = jnp.arange(img_size, h, img_size)
+    if not cols_only:
+        imgs  = jnp.insert(imgs, idx, jnp.nan, axis=1)
+    imgs  = jnp.insert(imgs, idx, jnp.nan, axis=0)
+    return imgs
 
 
 def shard_batch(
