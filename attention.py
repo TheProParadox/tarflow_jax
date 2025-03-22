@@ -192,7 +192,7 @@ class MultiheadAttention(eqx.Module):
     ) -> Union[Float[Array, "q_seq o_size"], Tuple[Float[Array, "q_seq o_size"], State]]:
         if deterministic is not None:
             inference = deterministic
-            warnings.warn("`deterministic` is deprecated in favour of `inference`.")
+            warnings.warn("`deterministic` is deprecated in favour of the `inference`.")
         query_seq_length, _ = query.shape
         kv_seq_length, _ = key_.shape
         if kv_seq_length != value.shape[0]:
