@@ -94,24 +94,32 @@ class Policy:
 
     def cast_to_param(self, x: PyTree) -> PyTree:
         if self.param_dtype is not None:
+            
             x = _cast_floating_to(x, self.param_dtype)
+            
         return x
 
     def cast_to_compute(self, x: PyTree) -> PyTree:
         if self.compute_dtype is not None:
+            
             x = _cast_floating_to(x, self.compute_dtype) 
+            
         return x
 
     def cast_to_output(self, x: PyTree) -> PyTree:
         if self.output_dtype is not None:
+            
             x = _cast_floating_to(x, self.output_dtype)
+            
         return x 
 
     def with_output_dtype(self, output_dtype: DTypeLike) -> "Policy":
+        
         return dataclasses.replace(self, output_dtype=output_dtype)
 
 
 def default(v, d):
+    
     return v if v is not None else d
 
 
